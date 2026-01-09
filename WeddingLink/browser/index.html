@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" data-beasties-container>
+<head>
+  <meta charset="utf-8">
+  <title>WeddingLink</title>
+  <base href="C:/Program Files/Git/WeddingLink/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+  // Your Firebase configuration (Paste your actual keys here)
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "weddinglink.firebaseapp.com",
+    databaseURL: "https://weddinglink-default-rtdb.firebaseio.com",
+    projectId: "weddinglink",
+    storageBucket: "weddinglink.appspot.com",
+    messagingSenderId: "...",
+    appId: "..."
+  };
+
+  // Initialize Firebase and make the "send" function global
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  window.saveGuest = async function(guestName) {
+    try {
+      await push(ref(db, 'guests'), {
+        name: guestName,
+        timestamp: new Date().toLocaleString()
+      });
+      return true;
+    } catch (e) {
+      console.error("Error saving guest:", e);
+      return false;
+    }
+  }
+</script>
+
+
+<link rel="stylesheet" href="styles-5INURTSO.css"></head>
+<body>
+  <app-root></app-root>
+<script src="main-VE2LQ5MO.js" type="module"></script></body>
+</html>
